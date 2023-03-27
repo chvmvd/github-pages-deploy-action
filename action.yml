@@ -1,0 +1,39 @@
+---
+name: Deploy to GitHub Pages and Deploy PR Preview
+author: WATAHIKI Yuto
+description: Deploy to GitHub Pages and Deploy PR Preview
+inputs:
+  folder:
+    description: Folder to deploy
+    required: true
+  branch:
+    description: Branch to deploy
+    required: false
+    default: gh-pages
+  umbrella-dir:
+    description: Directory containing all previews
+    required: false
+    default: pr-preview
+
+runs:
+  using: composite
+  steps:
+    - name: Deploy to GitHub Pages
+      if: ${{ github.event_name == 'push' }}
+      uses: ./.github/actions/deploy
+      with:
+        folder: ${{ inputs.folder }}
+        branch: ${{ inputs.branch }}
+        umbrella-dir: ${{ inputs.umbrella-dir }}
+
+    - name: Deploy PR Preview
+      if: ${{ github.event_name == 'pull_request' }}
+      uses: ./.github/actions/preview
+      with:
+        folder: ${{ inputs.folder }}
+        branch: ${{ inputs.branch }}
+        umbrella-dir: ${{ inputs.umbrella-dir }}
+
+branding:
+  icon: git-branch
+  color: gray-dark
