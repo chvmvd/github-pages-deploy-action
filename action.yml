@@ -6,6 +6,10 @@ inputs:
   folder:
     description: Folder to deploy
     required: true
+  pr-preview:
+    description: Whether to deploy PR Preview
+    required: false
+    default: true
   branch:
     description: Branch to deploy
     required: false
@@ -27,7 +31,7 @@ runs:
         umbrella-dir: ${{ inputs.umbrella-dir }}
 
     - name: Deploy PR Preview
-      if: ${{ github.event_name == 'pull_request' }}
+      if: ${{ github.event_name == 'pull_request' && inputs.pr-preview == 'true' }}
       uses: ./.github/actions/preview
       with:
         folder: ${{ inputs.folder }}
