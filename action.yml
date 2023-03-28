@@ -24,18 +24,18 @@ runs:
   steps:
     - name: Deploy to GitHub Pages
       if: ${{ github.event_name == 'push' }}
-      uses: ./.github/actions/deploy
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: ${{ inputs.folder }}
         branch: ${{ inputs.branch }}
-        umbrella-dir: ${{ inputs.umbrella-dir }}
+        clean-exclude: ${{ inputs.umbrella-dir }}
 
     - name: Deploy PR Preview
       if: ${{ github.event_name == 'pull_request' && inputs.pr-preview == 'true' }}
-      uses: ./.github/actions/preview
+      uses: rossjrw/pr-preview-action@v1
       with:
-        folder: ${{ inputs.folder }}
-        branch: ${{ inputs.branch }}
+        source-dir: ${{ inputs.folder }}
+        preview-branch: ${{ inputs.branch }}
         umbrella-dir: ${{ inputs.umbrella-dir }}
 
 branding:
