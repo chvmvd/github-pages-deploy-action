@@ -11,7 +11,7 @@ inputs:
     required: false
     default: true
   branch:
-    description: Branch to deploy
+    description: Branch to be deployed
     required: false
     default: gh-pages
   umbrella-dir:
