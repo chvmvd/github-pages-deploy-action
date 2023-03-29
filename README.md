@@ -55,7 +55,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy to GitHub Pages and Deploy PR Preview
-        uses: chvmvd/github-pages-deploy-and-preview-action@v1
+        uses: chvmvd/github-pages-deploy-and-preview-action@v1.0.0
         with:
           folder: test
 ```
