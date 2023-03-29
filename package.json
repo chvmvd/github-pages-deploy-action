@@ -2,7 +2,9 @@
   "name": "github-pages-deploy-action",
   "version": "1.0.0",
   "description": "GitHub Action that deploys a static site to GitHub Pages and creates a PR preview.",
-  "scripts": {},
+  "scripts": {
+    "format": "prettier --write ."
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chvmvd/github-pages-deploy-and-preview-action.git"
